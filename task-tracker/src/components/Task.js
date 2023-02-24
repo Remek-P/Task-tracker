@@ -1,9 +1,12 @@
 import React from "react";
 
-export function Task ({ task, deleteTask }) {
+export function Task ({ task, deleteTask, toggleReminder }) {
 
     return (
-        <div className="task">
+        <div
+            className={`task ${task.reminder ? "reminder" : ""}`}
+            onClick={() => toggleReminder(task.id)}
+        >
             <h3>
                 {task.text}
                 <i

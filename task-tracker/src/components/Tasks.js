@@ -11,6 +11,13 @@ export function Tasks ({ tasks, setTasks }) {
         console.log("click", id)
     }
 
+    const toggleReminder = (id) => {
+        setTasks(tasks.map(task => task.id === id
+            ? { ...task, reminder: !task.reminder }
+            : task
+        ))
+    }
+
     return (
         <>
             {
@@ -20,6 +27,7 @@ export function Tasks ({ tasks, setTasks }) {
                             key={task.id}
                             task={task}
                             deleteTask={deleteTask}
+                            toggleReminder={toggleReminder}
                         />))
                     : noTasksMessage
             }
