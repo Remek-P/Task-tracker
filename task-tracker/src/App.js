@@ -28,12 +28,17 @@ function App() {
     ]
 
     const [tasks, setTasks] = useState(tasksList);
+    const [showAddTask, setShowAddTask] = useState(false);
+
+    const showAddTaskForm = () => {
+        setShowAddTask(!showAddTask)
+    };
 
     return (
         <div className="container">
-            <Header />
-            <AddTask />
-            <Tasks tasks={tasks} setTasks={setTasks}/>
+            <Header showAddTaskForm={showAddTaskForm} />
+            {showAddTask && <AddTask tasks={tasks} setTasks={setTasks} />}
+            <Tasks tasks={tasks} setTasks={setTasks} />
         </div>
     );
 }
