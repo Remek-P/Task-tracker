@@ -36,7 +36,7 @@ function App() {
 
     return (
         <div className="container">
-            <Header showAddTaskForm={showAddTaskForm} />
+            <Header showAddTask={showAddTask} showAddTaskForm={showAddTaskForm} />
             {showAddTask && <AddTask tasks={tasks} setTasks={setTasks} />}
             <Tasks tasks={tasks} setTasks={setTasks} />
         </div>
