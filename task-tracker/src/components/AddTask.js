@@ -4,6 +4,7 @@ export function AddTask({ tasks, setTasks }) {
 
     const [task, setTask] = useState("");
     const [day, setDay] = useState("");
+    const [time, setTime] = useState("");
     const [reminder, setReminder] = useState(false);
 
     const addTask = (e) => {
@@ -13,6 +14,7 @@ export function AddTask({ tasks, setTasks }) {
             id: highestID + 1,
             text: task,
             day,
+            time,
             reminder,
         }
             setTasks([...tasks, newTask])
@@ -35,10 +37,21 @@ export function AddTask({ tasks, setTasks }) {
                 <label htmlFor="date"></label>
                 <input
                     name="date"
-                    type="text"
+                    type="date"
                     value={day}
                     onChange={e => setDay(e.target.value)}
-                    placeholder="Add Date & Time"
+                    placeholder="Add Date"
+                    required
+                />
+            </div>
+            <div className="form-control">
+                <label htmlFor="time"></label>
+                <input
+                    name="time"
+                    type="time"
+                    value={time}
+                    onChange={e => setTime(e.target.value)}
+                    placeholder="Add Time"
                     required
                 />
             </div>

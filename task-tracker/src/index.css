@@ -89,6 +89,11 @@ body {
   font-size: 17px;
 }
 
+input[type=date],
+input[type=time] {
+  color: grey;
+}
+
 .form-control-check {
   display: flex;
   align-items: center;

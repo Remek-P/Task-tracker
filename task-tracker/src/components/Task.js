@@ -5,7 +5,7 @@ export function Task ({ task, deleteTask, toggleReminder }) {
     return (
         <div
             className={`task ${task.reminder ? "reminder" : ""}`}
-            onClick={() => toggleReminder(task.id)}
+            onDoubleClick={() => toggleReminder(task.id)}
         >
             <h3>
                 {task.text}
@@ -15,7 +15,7 @@ export function Task ({ task, deleteTask, toggleReminder }) {
                     onClick={() => deleteTask(task.id)}
                 />
             </h3>
-            <p>{task.day}</p>
+            <p>{task.day} at {task.time}</p>
         </div>
     )
 }

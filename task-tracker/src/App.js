@@ -10,19 +10,22 @@ function App() {
         {
             id: 1,
             text: "a",
-            day: "Feb 4th at 1:00pm",
+            day: "Feb 4th",
+            time: "13:00",
             reminder: true,
         },
         {
             id: 2,
             text: "b",
-            day: "Feb 5th at 1:30pm",
+            day: "Feb 5th",
+            time: "13:30",
             reminder: true,
         },
         {
             id: 3,
             text: "c",
-            day: "Feb 6th at 2:00pm",
+            day: "Feb 6th",
+            time: "14:00",
             reminder: false,
         },
     ]
