@@ -92,6 +92,9 @@ body {
 input[type=date],
 input[type=time] {
   color: grey;
+  font-family: inherit;
+  font-weight: 200;
+  font-size: inherit;
 }
 
 .form-control-check {
