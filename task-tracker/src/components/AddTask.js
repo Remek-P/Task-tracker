@@ -2,6 +2,7 @@ import React, {useState} from "react";
 
 export function AddTask({ tasks, setTasks }) {
 
+    //TODO: deal with dates
     const [task, setTask] = useState("");
     const [day, setDay] = useState("");
     const [time, setTime] = useState("");
