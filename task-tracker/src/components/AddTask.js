@@ -4,11 +4,12 @@ export function AddTask({ tasks, setTasks }) {
 
     const date = new Date()
     const dateString = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+    const timeString = date.getHours() + ":" + date.getMinutes();
 
     //TODO: deal with dates
     const [task, setTask] = useState("");
     const [day, setDay] = useState(dateString);
-    const [time, setTime] = useState("");
+    const [time, setTime] = useState(timeString);
     const [reminder, setReminder] = useState(false);
 
     const addTask = (e) => {
