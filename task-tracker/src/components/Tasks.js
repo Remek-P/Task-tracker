@@ -8,7 +8,6 @@ export function Tasks ({ tasks, setTasks }) {
 
     const deleteTask = (id) => {
         setTasks(tasks.filter(task => task.id !== id))
-        console.log("click", id)
     }
 
     const toggleReminder = (id) => {
