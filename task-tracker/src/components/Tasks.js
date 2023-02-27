@@ -4,18 +4,43 @@ import { Task } from "./Task";
 
 export function Tasks ({ tasks, setTasks }) {
 
-    const noTasksMessage = "You are all set!"
+    const noTasksMessage = "You are all set!";
 
-    const deleteTask = (id) => {
-        setTasks(tasks.filter(task => task.id !== id))
-    }
+    const deleteTask = async (id) => {
+        const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+            method: 'DELETE',
+        });
+        res.status === 200
+            ? setTasks(tasks.filter((task) => task.id !== id))
+            : alert('Error Deleting This Task')
+    };
 
-    const toggleReminder = (id) => {
+    const fetchTask = async (id) => {
+        const res = await fetch(`http://localhost:5000/tasks/${id}`);
+        const data = await res.json();
+
+        return data;
+    };
+
+    const toggleReminder = async (id) => {
+
+        const reminderToggle = await fetchTask(id);
+        const updateTask = { ...reminderToggle, reminder: !reminderToggle.reminder };
+        const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(updateTask),
+        });
+
+        const data = await res.json();
+
         setTasks(tasks.map(task => task.id === id
-            ? { ...task, reminder: !task.reminder }
+            ? { ...task, reminder: data.reminder }
             : task
         ))
-    }
+    };
 
     return (
         <>

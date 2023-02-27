@@ -7,22 +7,33 @@ export function AddTask({ tasks, setTasks }) {
     const timeString = date.getHours() + ":" + date.getMinutes();
 
     //TODO: deal with dates
-    const [task, setTask] = useState("");
+    const [text, setText] = useState("");
     const [day, setDay] = useState(dateString);
     const [time, setTime] = useState(timeString);
     const [reminder, setReminder] = useState(false);
 
-    const addTask = (e) => {
-        e.preventDefault()
+    const addTask = async (e) => {
+        e.preventDefault();
+
         const highestID = [...tasks].sort((a,b) => b.id - a.id)[0].id
         const newTask = {
             id: highestID + 1,
-            text: task,
+            text,
             day,
             time,
             reminder,
         }
-            setTasks([...tasks, newTask])
+
+        const res = await fetch('http://localhost:5000/tasks', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(newTask),
+        });
+
+        const data = await res.json()
+            setTasks([...tasks, data])
     }
 
     return (
@@ -32,8 +43,8 @@ export function AddTask({ tasks, setTasks }) {
                 <input
                     name="task"
                     type="text"
-                    value={task}
-                    onChange={e => setTask(e.target.value)}
+                    value={text}
+                    onChange={e => setText(e.target.value)}
                     placeholder="Add Task"
                     required
                 />
