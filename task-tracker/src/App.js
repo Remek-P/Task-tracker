@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
-import { Header } from "./components/Header";
-import { Tasks } from "./components/Tasks";
-import { AddTask } from "./components/AddTask";
+import {Header} from "./components/Header";
+import {Tasks} from "./components/Tasks";
+import {AddTask} from "./components/AddTask";
 
 function App() {
 
@@ -24,9 +24,7 @@ function App() {
 
     const fetchTasks = async () => {
         const res = await fetch("http://localhost:5000/tasks")
-        const data = await res.json()
-
-        return data
+        return await res.json()
     }
 
     return (

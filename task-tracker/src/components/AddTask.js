@@ -36,6 +36,7 @@ export function AddTask({ tasks, setTasks }) {
 
         const data = await res.json();
             setTasks([...tasks, data]);
+            setText("")
     }
 
     return (
