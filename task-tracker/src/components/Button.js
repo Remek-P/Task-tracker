@@ -1,12 +1,17 @@
 import React from "react";
 
-export function Button ({ color, text, showAddTaskForm }) {
+export function Button ({ color, text, toggleAddTaskForm, toggleEditTaskForm }) {
+
+    const handleClick = () => {
+        toggleAddTaskForm();
+        toggleEditTaskForm()
+    }
 
     return (
         <button
             className="btn"
             style={{backgroundColor: color}}
-            onClick={showAddTaskForm}
+            onClick={handleClick}
         >
             {text}
         </button>

@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Task } from "./Task";
+import {Task} from "./Task";
 
-export function Tasks ({ tasks, setTasks }) {
+export function Tasks ({ tasks, setTasks, showEditTask, setShowEditTask, fetchTask, toggleAddTaskForm }) {
 
     const noTasksMessage = "You are all set!";
 
@@ -13,13 +13,6 @@ export function Tasks ({ tasks, setTasks }) {
         res.status === 200
             ? setTasks(tasks.filter((task) => task.id !== id))
             : alert('Error Deleting This Task')
-    };
-
-    const fetchTask = async (id) => {
-        const res = await fetch(`http://localhost:5000/tasks/${id}`);
-        const data = await res.json();
-
-        return data;
     };
 
     const toggleReminder = async (id) => {
@@ -42,6 +35,11 @@ export function Tasks ({ tasks, setTasks }) {
         ))
     };
 
+    const toggleEditFormTask = () => {
+        setShowEditTask(!showEditTask);
+        toggleAddTaskForm()
+    };
+
     return (
         <>
             {
@@ -52,6 +50,7 @@ export function Tasks ({ tasks, setTasks }) {
                             task={task}
                             deleteTask={deleteTask}
                             toggleReminder={toggleReminder}
+                            toggleEditFormTask={toggleEditFormTask}
                         />))
                     : noTasksMessage
             }

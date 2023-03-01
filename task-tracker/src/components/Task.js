@@ -1,6 +1,11 @@
 import React from "react";
 
-export function Task ({ task, deleteTask, toggleReminder }) {
+export function Task ({ task, deleteTask, toggleReminder, toggleEditFormTask }) {
+
+    const handleEdit = () => {
+        toggleEditFormTask();
+
+    }
 
     return (
         <div
@@ -9,6 +14,11 @@ export function Task ({ task, deleteTask, toggleReminder }) {
         >
             <h3>
                 {task.text}
+                <i
+                    className="fa-sharp fa-solid fa-pencil"
+                    style={{color: "lightgreen"}}
+                    onClick={handleEdit}
+                />
                 <i
                     className="fa-sharp fa-solid fa-xmark"
                     style={{color: "red"}}

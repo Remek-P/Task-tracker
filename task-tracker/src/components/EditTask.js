@@ -1,15 +1,14 @@
 import React from "react";
 
-export function AddTask({ tasks, setTasks, text, setText, day, setDay, time, setTime, reminder, setReminder }) {
+export function EditTask({ tasks, setTasks, text, setText, day, setDay, time, setTime, reminder, setReminder, showEditTask, setShowEditTask }) {
 
-    const addTask = async (e) => {
+    const editTask = async (e) => {
         e.preventDefault();
 
-        const highestID = tasks.length > 0
-            ? [...tasks].sort((a,b) => b.id - a.id)[0].id
-            : 0
+        setShowEditTask(!showEditTask);
+
         const newTask = {
-            id: highestID + 1,
+            // id,
             text,
             day,
             time,
@@ -26,42 +25,41 @@ export function AddTask({ tasks, setTasks, text, setText, day, setDay, time, set
 
         const data = await res.json();
         setTasks([...tasks, data]);
-        setText("");
-        setDay()
+        setText("")
     }
 
     return (
-        <form className="add-form" onSubmit={addTask}>
+        <form className="add-form" onSubmit={editTask}>
             <div className="form-control">
-                <label htmlFor="task"></label>
+                <label htmlFor="editTask"></label>
                 <input
-                    name="task"
+                    name="editTask"
                     type="text"
                     value={text}
                     onChange={e => setText(e.target.value)}
-                    placeholder="Add Task"
+                    placeholder="Edit Task"
                     required
                 />
             </div>
             <div className="form-control">
-                <label htmlFor="date"></label>
+                <label htmlFor="editDate"></label>
                 <input
-                    name="date"
+                    name="editDate"
                     type="date"
                     value={day}
                     onChange={e => setDay(e.target.value)}
-                    placeholder="Add Date"
+                    placeholder="Edit Date"
                     required
                 />
             </div>
             <div className="form-control">
-                <label htmlFor="time"></label>
+                <label htmlFor="editTime"></label>
                 <input
                     name="time"
                     type="time"
                     value={time}
                     onChange={e => setTime(e.target.value)}
-                    placeholder="Add Time"
+                    placeholder="Edit Time"
                     required
                 />
             </div>
@@ -78,7 +76,7 @@ export function AddTask({ tasks, setTasks, text, setText, day, setDay, time, set
             <input
                 className="btn btn-block"
                 type="submit"
-                value="Save New Task"
+                value="Save Edited Task"
             />
         </form>
     )
