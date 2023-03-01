@@ -15,13 +15,15 @@ export function AddTask({ tasks, setTasks }) {
     const addTask = async (e) => {
         e.preventDefault();
 
-        const highestID = [...tasks].sort((a,b) => b.id - a.id)[0].id
+        const highestID = tasks.length > 0
+            ? [...tasks].sort((a,b) => b.id - a.id)[0].id
+            : 0
         const newTask = {
             id: highestID + 1,
             text,
             day,
             time,
-            reminder,
+            reminder
         }
 
         const res = await fetch('http://localhost:5000/tasks', {
@@ -32,8 +34,8 @@ export function AddTask({ tasks, setTasks }) {
             body: JSON.stringify(newTask),
         });
 
-        const data = await res.json()
-            setTasks([...tasks, data])
+        const data = await res.json();
+            setTasks([...tasks, data]);
     }
 
     return (
