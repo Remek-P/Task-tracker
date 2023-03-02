@@ -1,35 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export function EditTask({ tasks, setTasks, text, setText, day, setDay, time, setTime, reminder, setReminder, showEditTask, setShowEditTask }) {
+export function EditTask({ tasks, setTasks, showEditTask, setShowEditTask, chosenTask }) {
 
-    const editTask = async (e) => {
+    // console.log(chosenTask)
+
+    const [text, setText] = useState("");
+    const [day, setDay] = useState("");
+    const [time, setTime] = useState("");
+    const [reminder, setReminder] = useState(undefined);
+
+    useEffect(() => {
+        setText(chosenTask.text)
+    },[])
+
+    const saveTask = async (e) => {
         e.preventDefault();
 
-        setShowEditTask(!showEditTask);
 
-        const newTask = {
-            // id,
-            text,
-            day,
-            time,
-            reminder
-        }
-
-        const res = await fetch('http://localhost:5000/tasks', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify(newTask),
-        });
-
-        const data = await res.json();
-        setTasks([...tasks, data]);
-        setText("")
+        setShowEditTask(false);
+        //
+        // const newTask = {
+        //     // id,
+        //     text,
+        //     day,
+        //     time,
+        //     reminder
+        // }
+        //
+        // const res = await fetch('http://localhost:5000/tasks', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-type': 'application/json',
+        //     },
+        //     body: JSON.stringify(newTask),
+        // });
+        //
+        // const data = await res.json();
+        // setTasks([...tasks, data]);
+        // setText("")
     }
 
     return (
-        <form className="add-form" onSubmit={editTask}>
+        <form className="add-form" onSubmit={saveTask}>
             <div className="form-control">
                 <label htmlFor="editTask"></label>
                 <input

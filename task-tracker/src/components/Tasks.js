@@ -2,7 +2,7 @@ import React from "react";
 
 import {Task} from "./Task";
 
-export function Tasks ({ tasks, setTasks, showEditTask, setShowEditTask, fetchTask, toggleAddTaskForm }) {
+export function Tasks ({ tasks, setTasks, showEditTask, setShowEditTask, setShowAddTask, fetchTask, pickChosenTask }) {
 
     const noTasksMessage = "You are all set!";
 
@@ -16,7 +16,6 @@ export function Tasks ({ tasks, setTasks, showEditTask, setShowEditTask, fetchTa
     };
 
     const toggleReminder = async (id) => {
-
         const reminderToggle = await fetchTask(id);
         const updateTask = { ...reminderToggle, reminder: !reminderToggle.reminder };
         const res = await fetch(`http://localhost:5000/tasks/${id}`, {
@@ -36,8 +35,8 @@ export function Tasks ({ tasks, setTasks, showEditTask, setShowEditTask, fetchTa
     };
 
     const toggleEditFormTask = () => {
-        setShowEditTask(!showEditTask);
-        toggleAddTaskForm()
+        setShowEditTask(true);
+        setShowAddTask(true);
     };
 
     return (
@@ -48,9 +47,11 @@ export function Tasks ({ tasks, setTasks, showEditTask, setShowEditTask, fetchTa
                         <Task
                             key={task.id}
                             task={task}
+                            fetchTask={fetchTask}
                             deleteTask={deleteTask}
                             toggleReminder={toggleReminder}
                             toggleEditFormTask={toggleEditFormTask}
+                            pickChosenTask={pickChosenTask}
                         />))
                     : noTasksMessage
             }

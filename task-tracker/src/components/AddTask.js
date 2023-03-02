@@ -1,6 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 
-export function AddTask({ tasks, setTasks, text, setText, day, setDay, time, setTime, reminder, setReminder }) {
+export function AddTask({ tasks, setTasks }) {
+
+    const date = new Date();
+    const dateString = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+    const timeString = date.getHours() + ":" + (date.getMinutes() > 10
+        ? date.getMinutes()
+        : "0" + date.getMinutes());
+
+    //TODO: deal with dates
+    const [text, setText] = useState("");
+    const [day, setDay] = useState(dateString);
+    const [time, setTime] = useState(timeString);
+    const [reminder, setReminder] = useState(false);
 
     const addTask = async (e) => {
         e.preventDefault();

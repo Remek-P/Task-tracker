@@ -9,6 +9,7 @@ function App() {
     const [tasks, setTasks] = useState([]);
     const [showAddTask, setShowAddTask] = useState(false);
     const [showEditTask, setShowEditTask] = useState(false);
+    const [chosenTask, setChosenTask] = useState("");
 
     const toggleAddTaskForm = () => {
         setShowAddTask(!showAddTask)
@@ -19,12 +20,11 @@ function App() {
     };
 
 
-
     useEffect(() => {
         const getTasks = async () => {
             const tasksFromServer = await fetchTasks();
             setTasks(tasksFromServer);
-        }
+        };
 
         getTasks();
     }, [])
@@ -37,6 +37,10 @@ function App() {
     const fetchTask = async (id) => {
         const res = await fetch(`http://localhost:5000/tasks/${id}`);
         return await res.json();
+    };
+
+    const pickChosenTask = async (id) => {
+        setChosenTask(await fetchTask(id))
     };
 
 
@@ -54,15 +58,15 @@ function App() {
                     setTasks={setTasks}
                     showEditTask={showEditTask}
                     setShowEditTask={setShowEditTask}
+                    chosenTask={chosenTask}
                 />
             }
             <Tasks
-                tasks={tasks}
-                setTasks={setTasks}
-                showEditTask={showEditTask}
-                setShowEditTask={setShowEditTask}
+                tasks={tasks} setTasks={setTasks}
+                showEditTask={showEditTask} setShowEditTask={setShowEditTask}
+                setShowAddTask={setShowAddTask}
                 fetchTask={fetchTask}
-                toggleAddTaskForm={toggleAddTaskForm}
+                pickChosenTask={pickChosenTask}
             />
         </div>
     );

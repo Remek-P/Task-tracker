@@ -1,11 +1,12 @@
 import React from "react";
 
-export function Task ({ task, deleteTask, toggleReminder, toggleEditFormTask }) {
+export function Task ({ task, deleteTask, toggleReminder, toggleEditFormTask, pickChosenTask }) {
 
     const handleEdit = () => {
         toggleEditFormTask();
-
-    }
+        pickChosenTask(task.id);
+        return task.id
+    };
 
     return (
         <div
@@ -15,7 +16,7 @@ export function Task ({ task, deleteTask, toggleReminder, toggleEditFormTask }) 
             <h3>
                 {task.text}
                 <i
-                    className="fa-sharp fa-solid fa-pencil"
+                    className="fa-sharp fa-solid fa-wand-magic"
                     style={{color: "lightgreen"}}
                     onClick={handleEdit}
                 />
