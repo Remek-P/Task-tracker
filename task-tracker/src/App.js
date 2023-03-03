@@ -39,8 +39,12 @@ function App() {
         return await res.json();
     };
 
-    const pickChosenTask = async (id) => {
-        setChosenTask(await fetchTask(id))
+    // const pickChosenTask = async (id) => {
+    //     setChosenTask(await fetchTask(id))
+    // };
+
+    const pickChosenTask = (task) => {
+        setChosenTask(task)
     };
 
 

@@ -47,7 +47,7 @@ export function Tasks ({ tasks, setTasks, showEditTask, setShowEditTask, setShow
                         <Task
                             key={task.id}
                             task={task}
-                            fetchTask={fetchTask}
+                            showEditTask={showEditTask}
                             deleteTask={deleteTask}
                             toggleReminder={toggleReminder}
                             toggleEditFormTask={toggleEditFormTask}

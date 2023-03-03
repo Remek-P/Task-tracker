@@ -39,7 +39,7 @@ export function AddTask({ tasks, setTasks }) {
         const data = await res.json();
         setTasks([...tasks, data]);
         setText("");
-        setDay()
+        setReminder(false)
     }
 
     return (
@@ -83,6 +83,7 @@ export function AddTask({ tasks, setTasks }) {
                     name="reminder"
                     type="checkbox"
                     value={reminder}
+                    checked={reminder}
                     onChange={e => setReminder(e.currentTarget.checked)}
                 />
             </div>

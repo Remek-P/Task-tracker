@@ -1,17 +1,22 @@
 import React from "react";
 
-export function Task ({ task, deleteTask, toggleReminder, toggleEditFormTask, pickChosenTask }) {
+export function Task ({ task, showEditTask, deleteTask, toggleReminder, toggleEditFormTask, pickChosenTask }) {
+
+    const handleToggleReminder = () => {
+        !showEditTask &&toggleReminder(task.id)
+    };
+
 
     const handleEdit = () => {
         toggleEditFormTask();
-        pickChosenTask(task.id);
-        return task.id
+        pickChosenTask(task);
+        return task
     };
 
     return (
         <div
             className={`task ${task.reminder ? "reminder" : ""}`}
-            onDoubleClick={() => toggleReminder(task.id)}
+            onDoubleClick={handleToggleReminder}
         >
             <h3>
                 {task.text}

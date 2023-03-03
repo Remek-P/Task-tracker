@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-export function EditTask({ tasks, setTasks, showEditTask, setShowEditTask, chosenTask }) {
+export function EditTask({ tasks, setTasks, setShowEditTask, chosenTask }) {
 
-    // console.log(chosenTask)
-
-    const [text, setText] = useState("");
-    const [day, setDay] = useState("");
-    const [time, setTime] = useState("");
-    const [reminder, setReminder] = useState(undefined);
-
-    useEffect(() => {
-        setText(chosenTask.text)
-    },[])
+    const [edText, setEdText] = useState(chosenTask.text);
+    const [edDay, setEdDay] = useState(chosenTask.day);
+    const [edTime, setEdTime] = useState(chosenTask.time);
+    const [edReminder, setEdReminder] = useState(chosenTask.reminder);
 
     const saveTask = async (e) => {
         e.preventDefault();
 
+        // const editTask = async ()
 
         setShowEditTask(false);
+
+
         //
-        // const newTask = {
+        // const editedTask = {
         //     // id,
         //     text,
         //     day,
@@ -47,8 +44,8 @@ export function EditTask({ tasks, setTasks, showEditTask, setShowEditTask, chose
                 <input
                     name="editTask"
                     type="text"
-                    value={text}
-                    onChange={e => setText(e.target.value)}
+                    value={edText}
+                    onChange={e => setEdText(e.target.value)}
                     placeholder="Edit Task"
                     required
                 />
@@ -58,8 +55,8 @@ export function EditTask({ tasks, setTasks, showEditTask, setShowEditTask, chose
                 <input
                     name="editDate"
                     type="date"
-                    value={day}
-                    onChange={e => setDay(e.target.value)}
+                    value={edDay}
+                    onChange={e => setEdDay(e.target.value)}
                     placeholder="Edit Date"
                     required
                 />
@@ -67,21 +64,22 @@ export function EditTask({ tasks, setTasks, showEditTask, setShowEditTask, chose
             <div className="form-control">
                 <label htmlFor="editTime"></label>
                 <input
-                    name="time"
+                    name="editTime"
                     type="time"
-                    value={time}
-                    onChange={e => setTime(e.target.value)}
+                    value={edTime}
+                    onChange={e => setEdTime(e.target.value)}
                     placeholder="Edit Time"
                     required
                 />
             </div>
             <div className="form-control form-control-check">
-                <label htmlFor="reminder">Set Reminder</label>
+                <label htmlFor="editReminder">Set Reminder</label>
                 <input
-                    name="reminder"
+                    name="editReminder"
                     type="checkbox"
-                    value={reminder}
-                    onChange={e => setReminder(e.currentTarget.checked)}
+                    value={edReminder}
+                    checked={edReminder}
+                    onChange={e => setEdReminder(e.currentTarget.checked)}
                 />
             </div>
 

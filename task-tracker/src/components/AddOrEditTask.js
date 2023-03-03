@@ -15,7 +15,7 @@ export function AddOrEditTask({ tasks, setTasks, showEditTask, setShowEditTask, 
                 />
                 : <EditTask
                 tasks={tasks} setTasks={setTasks}
-                showEditTask={showEditTask} setShowEditTask={setShowEditTask}
+                setShowEditTask={setShowEditTask}
                 chosenTask={chosenTask}
                 />
             }
