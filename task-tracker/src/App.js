@@ -61,6 +61,7 @@ function App() {
                     tasks={tasks}
                     setTasks={setTasks}
                     showEditTask={showEditTask}
+                    setShowAddTask={setShowAddTask}
                     setShowEditTask={setShowEditTask}
                     chosenTask={chosenTask}
                 />

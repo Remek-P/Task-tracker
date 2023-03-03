@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export function EditTask({ tasks, setTasks, setShowEditTask, chosenTask }) {
+export function EditTask({ tasks, setTasks, setShowAddTask, setShowEditTask, chosenTask }) {
 
     const [edText, setEdText] = useState(chosenTask.text);
     const [edDay, setEdDay] = useState(chosenTask.day);
@@ -10,32 +10,32 @@ export function EditTask({ tasks, setTasks, setShowEditTask, chosenTask }) {
     const saveTask = async (e) => {
         e.preventDefault();
 
-        // const editTask = async ()
+        const editedTask = {
+            id: chosenTask.id,
+            text: edText,
+            day: edDay,
+            time: edTime,
+            reminder: edReminder
+        };
+
+        const res = await fetch(`http://localhost:5000/tasks/${chosenTask.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(editedTask),
+        });
+
+        const data = await res.json();
+        setTasks(tasks.map(task => task.id === chosenTask.id
+            ? task = data
+            : task
+        ));
 
         setShowEditTask(false);
-
-
-        //
-        // const editedTask = {
-        //     // id,
-        //     text,
-        //     day,
-        //     time,
-        //     reminder
-        // }
-        //
-        // const res = await fetch('http://localhost:5000/tasks', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-type': 'application/json',
-        //     },
-        //     body: JSON.stringify(newTask),
-        // });
-        //
-        // const data = await res.json();
-        // setTasks([...tasks, data]);
-        // setText("")
+        setShowAddTask(false);
     }
+    // TODO: close the form (setAddTaskForm to false
 
     return (
         <form className="add-form" onSubmit={saveTask}>

@@ -19,7 +19,14 @@
       "text": "3",
       "day": "2023-03-04",
       "time": "17:54",
-      "reminder": false
+      "reminder": true
+    },
+    {
+      "id": 4,
+      "text": "4",
+      "day": "2023-03-08",
+      "time": "19:16",
+      "reminder": true
     }
   ]
 }
