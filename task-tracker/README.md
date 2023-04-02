@@ -10,13 +10,13 @@ This is a simple task tracker app made in React, based on one of the exercises f
 * Tasks are stored and retrieved by pseud-server.
 
 ## Comands
+
+Start the app
 ````
 npm start
 ````
-Start the app
 
+Start the pseudo-server
 ```` 
 npm run server
 ````
-
-Start the pseudo-server
