@@ -22,4 +22,3 @@ npm run server
 ````
 
 ## Try it out:
-https://iridescent-centaur-cb728f.netlify.app/
