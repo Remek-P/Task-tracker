@@ -9,7 +9,7 @@ This is a simple task tracker app made in React, based on one of the exercises f
 * Priority change by double-click ,
 * Tasks are stored and retrieved by pseud-server.
 
-## Comands
+## Commands
 
 Start the app
 ````
@@ -22,3 +22,4 @@ npm run server
 ````
 
 ## Try it out:
+https://iridescent-centaur-cb728f.netlify.app/
